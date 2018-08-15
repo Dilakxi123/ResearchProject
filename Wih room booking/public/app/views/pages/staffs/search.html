@@ -1,0 +1,75 @@
+<div class="page-header">
+    <h1>Search Engine</h1>
+</div>
+<br>   
+<div class = "jumbotron text-center" ng-show="staff.loading">
+        <span class = "glyphicon glyphicon-repeat spinner"></span>
+        <p>Loading...</p>
+    </div>
+    <br>
+
+
+    <div class="navbar-form">
+        <div class="form-group">
+            <input type="text" class="form-control" name="searchByName" placeholder="search by..." ng-model="searchByName">
+        </div>
+        <button type="button" class="btn btn-default">Staff Name</button>
+    </div>
+    <div class="navbar-form">
+        <button type="button" ng-click="staff.advanceSearch(searchByName);" class="btn btn-default">Search</button>
+    <br>
+    <br>
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger">Sort By</button>
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle dropdown</span>
+        </button>
+        <ul class="dropdown-menu"> 
+            <li><a ng-click="staff.sortOrder('name');" href="#">Staff Name</a></li>
+        </ul>
+    </div>
+    </div>
+    <br>
+    <div ng-show="staff.searchLimit === undefined">
+        <p><strong>Results: </strong>{{ (staff.staffs | filter: advancedSearchFilter | limitTo: staff.searchLimit).length }}</p>
+    </div>
+    <div ng-show="staff.sort">
+        <p><strong>sort By: </strong>{{staff.sort}}</p>
+    </div>
+    <br>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Staffs</strong>
+    </div>
+    
+    <table class="table">
+        
+        <tr>
+            <th>Staff Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Specialize</th>
+            <th>Phone No</th>
+            <th>Address</th>
+            
+        </tr>
+        <tr ng-repeat="staff in staff.staffs | filter: advancedSearchFilter | limitTo: staff.searchLimit | orderBy: staff.sort">
+            <td>{{ staff.name }}</td>
+            <td>{{ staff.username }}</td>
+            <td>{{ staff.email }}</td>
+            <td>{{ staff.specialize }}</td>
+            <td>{{ staff.phoneNo }}</td>
+            <td>{{ staff.address }}</td>
+            
+            <td>
+            <a href="/edit/{{ staff._id }}"><button type="button" class="btn btn-primary">Edit</button></a>
+            <button type="button"  class="btn btn-danger" ng-click="deleteStaff(staff.name)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+    

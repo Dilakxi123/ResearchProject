@@ -1,0 +1,75 @@
+<div class="page-header">
+    <h1>Search Engine</h1>
+</div>
+<br>   
+<div class = "jumbotron text-center" ng-show="hotel.loading">
+        <span class = "glyphicon glyphicon-repeat spinner"></span>
+        <p>Loading...</p>
+    </div>
+    <br>
+
+
+    <div class="navbar-form">
+        <div class="form-group">
+            <input type="text" class="form-control" name="searchByName" placeholder="search by..." ng-model="searchByName">
+        </div>
+        <button type="button" class="btn btn-default">Hotel Name</button>
+    </div>
+    <div class="navbar-form">
+        <button type="button" ng-click="hotel.advanceSearch(searchByName);" class="btn btn-default">Search</button>
+    <br>
+    <br>
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger">Sort By</button>
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle = "dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle dropdown</span>
+        </button>
+        <ul class="dropdown-menu"> 
+            <li><a ng-click="hotel.sortOrder('name');" href="#">Hotel Name</a></li>
+        </ul>
+    </div>
+    </div>
+    <br>
+    <div ng-show="hotel.searchLimit === undefined">
+        <p><strong>Results: </strong>{{ (hotel.hotels | filter: advancedSearchFilter | limitTo: hotel.searchLimit).length }}</p>
+    </div>
+    <div ng-show="hotel.sort">
+        <p><strong>sort By: </strong>{{hotel.sort}}</p>
+    </div>
+    <br>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Hotels</strong>
+    </div>
+    
+    <table class="table">
+        
+        <tr>
+            <th>Hotel Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Rate</th>
+            <th>Room Count</th>
+            
+        </tr>
+        <tr ng-repeat="hotel in hotel.hotels | filter: advancedSearchFilter | limitTo: hotel.searchLimit | orderBy: hotel.sort">
+            <td>{{ hotel.name }}</td>
+            <td>{{ hotel.address }}</td>
+            <td>{{ hotel.phone }}</td>
+            <td>{{ hotel.email }}</td>
+            <td>{{ hotel.rate }}</td>
+            <td>{{ hotel.roomCount }}</td>
+            
+            <td>
+            <a href="/hotelEdit/{{ hotel._id }}"><button type="button" class="btn btn-primary">Edit</button></a>
+            <button type="button"  class="btn btn-danger" ng-click="deleteHotel(hotel.name)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+    

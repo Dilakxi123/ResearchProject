@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<script src="app/controllers/appointmentCtrl.js"></script>
+<title>Disease Recording</title>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css" />
+<script>
+	function test()
+	{
+		alert('test');
+	}
+</script>
+
+<style type="text/css">
+			body{
+				font-family: verdana;
+			}
+			#result{
+				height: 200px;
+				border: 1px solid #ccc;
+				padding: 10px;
+				box-shadow: 0 0 10px 0 #bbb;
+				margin-bottom: 30px;
+				font-size: 14px;
+				line-height: 25px;
+			}
+			button{
+				position: absolute;
+				top: 0px;
+				left: 0%;
+			}
+		</style>
+
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/4f936b58/cloudflare-static/rocket-loader.min.js" data-cf-nonce="728f3c02d5e5992fabe024c7-" defer=""></script></body>
+	
+</head>
+<body>
+<div class="page-header">
+	<h2>Please Record Your Disease</h2>
+</div>
+<div id="result"></div>
+<div class="container">
+	<div class="row">
+	  <div class="col-sm-6"> 
+		<button class="btn btn-primary" ng-click="startConverting()">Listen</button>
+	  </div>
+	  <div class="col-sm-6">
+		<button class="btn btn-primary" ng-click="analyseData()">Please analyse</button>
+	  </div>
+	</div>
+</div>
+
+<br><br><br><br>
+
+<div class="page-header">
+	<h2>Make An Appointment</h2>
+</div>
+<form ng-submit="appointment.addAppointment(appointmentData);">
+		<label>Patient Name:</label>
+		<input class="form-control"  name="patientName"  ng-model="username" ng-disabled="true">
+		<br>
+		<label>disease:</label>
+		<input class="form-control" type="text" name="disease" ng-disabled="true"  ng-model="diseaseModal">
+		<br>
+		<label>Doctor Name</label>
+		<select class="form-control" name="doctorName" ng-model="model" >
+			<option ng-repeat="option in data | filter: filterExpression:index" value="{{option.id}}">{{ option.label }}</option>
+		</select>
+		<br>
+		<label>Date:</label>
+		<input class="form-control" min="{{minDate | date: 'yyyy-MM-dd'}}" type="date" name="date" placeholder="please enter appointment date" ng-model="appointment.appointmentData.date">
+		<br>
+		<br><br>
+		<div class="col-sm-6">
+			<button class="btn btn-primary" type="submit">Add</button>
+		</div>
+</form>
+<br>
+<br><br><br><br><br>
+<div class="container">
+	<div class="row">
+	  <div class="col-sm-6"> 
+		<a href="/reservation"><button type="button" class="btn btn-sm btn-primary pull-right">Book Room</button>
+	  </div>
+	</div>
+</div>
+
+<div class="jumbotron text-center" ng-show="appointment.loading">
+		<span class="glyphicon glyphicon-repeat spinner"></span>
+		<p>Loading....</p>
+	</div>
+	<br>
+	
+	<div class="row show-hide-message" ng-show="appointment.successMsg">
+		<div class="alert alert-success">{{appointment.successMsg}}</div>
+	</div>
+	
+	<br>
+	
+	<div class="row show-hide-message" ng-show="appointment.errorMsg">
+		<div class="alert alert-danger">{{ appointment.errorMsg }}</div>
+	</div>
+	
+
+</html>

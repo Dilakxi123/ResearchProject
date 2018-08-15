@@ -1,0 +1,38 @@
+<div class="page-header">
+    <h1>Make Booking</h1>
+</div>
+<form ng-submit="booking.addBooking(proData);">
+    <label>customerName:</label>
+    <input class="form-control" type="text" name="customerName" placeholder="please enter customerName" ng-model="booking.proData.customerName">
+    <br>
+    <label>hotelName:</label>
+    <input class="form-control" type="text" name="hotelName" placeholder="please enter hotelName" ng-model="booking.proData.hotelName">
+    <br>
+    <label>checkIn:</label>
+    <input class="form-control" type="text" name="checkIn" placeholder="please enter checkIn" ng-model="booking.proData.checkIn">
+    <br>
+    <label>checkOut:</label>
+    <input class="form-control" type="text" name="checkOut" placeholder="please enter checkOut" ng-model="booking.proData.checkOut">
+    <br>
+    <label>roomType:</label>
+    <input class="form-control" type="text" name="roomType" placeholder="please enter roomType" ng-model="booking.proData.roomType">
+    <br>
+    <br><br><br><br>
+    <button class="btn btn-primary" type="submit">Add</button>
+</form>
+<br>
+<div class="jumbotron text-center" ng-show="booking.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading....</p>
+</div>
+<br>
+
+<div class="row show-hide-message" ng-show="booking.successMsg">
+    <div class="alert alert-success">{{booking.successMsg}}</div>
+</div>
+
+<br>
+
+<div class="row show-hide-message" ng-show="booking.errorMsg">
+    <div class="alert alert-danger">{{ booking.errorMsg }}</div>
+</div>
