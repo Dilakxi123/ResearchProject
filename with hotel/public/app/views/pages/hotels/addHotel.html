@@ -1,0 +1,41 @@
+<div class="page-header">
+    <h1>Add Hotels</h1>
+</div>
+<form ng-submit="hotel.addHotel(proData);">
+    <label>Hotel Name:</label>
+    <input class="form-control" type="text" name="name" placeholder="please enter hotel Name" ng-model="hotel.proData.name">
+    <br>
+    <label>Address:</label>
+    <input class="form-control" type="text" name="address" placeholder="please enter address" ng-model="hotel.proData.address">
+    <br>
+    <label>Phone:</label>
+    <input class="form-control" type="text" name="phone" placeholder="please enter phone" ng-model="hotel.proData.phone">
+    <br>
+    <label>Email:</label>
+    <input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="hotel.proData.email">
+    <br>
+    <label>Rate:</label>
+    <input class="form-control" type="text" name="rate" placeholder="please enter rate" ng-model="hotel.proData.rate">
+    <br>
+    <label>Room Count:</label>
+    <input class="form-control" type="text" name="roomCount" placeholder="please enter room Count" ng-model="hotel.proData.roomCount">
+    <br>
+    <br><br><br><br>
+    <button class="btn btn-primary" type="submit">Add</button>
+</form>
+<br>
+<div class="jumbotron text-center" ng-show="hotel.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading....</p>
+</div>
+<br>
+
+<div class="row show-hide-message" ng-show="hotel.successMsg">
+    <div class="alert alert-success">{{hotel.successMsg}}</div>
+</div>
+
+<br>
+
+<div class="row show-hide-message" ng-show="hotel.errorMsg">
+    <div class="alert alert-danger">{{ hotel.errorMsg }}</div>
+</div>

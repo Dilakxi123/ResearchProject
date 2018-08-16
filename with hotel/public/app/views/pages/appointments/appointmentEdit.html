@@ -1,0 +1,36 @@
+<div class="page-header">
+        <h1>Edit Appointment</h1>
+    <br>
+    <ul class="nav nav-tabs">
+    <li role="presentation" ng-click="appointmentEdit.doctorNamePhase();" ng-class="doctorNameTab"><a href="#">Doctor Name</a></li>
+    <li role="presentation" ng-click="appointmentEdit.datePhase();" ng-class="dateTab"><a href="#">Date</a></li>
+    
+    </ul>
+    <br>
+    
+    
+    <form name="appointmentEdit.doctorNameForm" ng-show="appointmentEdit.phase1" ng-submit="appointmentEdit.updateDoctorName(newDoctorName, appointmentEdit.doctorNameForm.doctorName.$valid)" novalidate>
+            <label>Doctor Name:</label>
+            <select class="form-control" name="doctorName" ng-model="model" >
+                <option ng-repeat="option in data" value="{{option.id}}">{{ option.label }}</option>
+        </select>
+            <br>
+    <button ng-disabled="appointmentEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+    </form>
+    <form name="appointmentEdit.dateForm" ng-show="appointmentEdit.phase2" ng-submit="appointmentEdit.updateDate(newDate, appointmentEdit.dateForm.date.$valid)" novalidate>
+        <label>Date:</label>
+        <input ng-disabled="appointmentEdit.disabled" class="form-control" type="date" name="date" placeholder="please enter Date" ng-model="newDate" required>
+        <br>
+    <button ng-disabled="appointmentEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+    </form>
+    
+    <br>
+    
+    <div class="row show-hide-message" ng-show="appointmentEdit.successMsg">
+        <div class="alert alert-success">{{ appointmentEdit.successMsg }}</div>
+    </div>
+    
+    
+    <div class="row show-hide-message" ng-show="appointmentEdit.errorMsg">
+        <div class="alert alert-danger">{{ appointmentEdit.errorMsg }}</div>
+    </div>

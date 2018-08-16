@@ -1,0 +1,45 @@
+<div class="page-header">
+    <h1>Add Staffs</h1>
+</div>
+<form ng-submit="staff.addStaff(proData);">
+    <label>Staff Name:</label>
+    <input class="form-control" type="text" name="name" placeholder="please enter staff name" ng-model="staff.proData.name">
+    <br>
+    <label>Username:</label>
+    <input class="form-control" type="text" name="username" placeholder="please enter username" ng-model="staff.proData.username">
+    <br>
+    <label>Password:</label>
+    <input class="form-control" type="text" name="password" placeholder="please enter password" ng-model="staff.proData.password">
+    <br>
+    <label>PhoneNo:</label>
+    <input class="form-control" type="text" name="phoneNo" placeholder="please enter phoneNo" ng-model="staff.proData.phoneNo">
+    <br>
+    <label>Address:</label>
+    <input class="form-control" type="text" name="address" placeholder="please enter address" ng-model="staff.proData.address">
+    <br>
+    <label>Email:</label>
+    <input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="staff.proData.email">
+    <br>
+    <label>Specialize:</label>
+    <input class="form-control" type="text" name="specialize" placeholder="please enter Specialize" ng-model="staff.proData.specialize">
+    <br>
+    
+    <br><br><br><br>
+    <button class="btn btn-primary" type="submit">Add</button>
+</form>
+<br>
+<div class="jumbotron text-center" ng-show="staff.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading....</p>
+</div>
+<br>
+
+<div class="row show-hide-message" ng-show="staff.successMsg">
+    <div class="alert alert-success">{{staff.successMsg}}</div>
+</div>
+
+<br>
+
+<div class="row show-hide-message" ng-show="staff.errorMsg">
+    <div class="alert alert-danger">{{ staff.errorMsg }}</div>
+</div>

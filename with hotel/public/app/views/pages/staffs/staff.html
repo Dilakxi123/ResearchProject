@@ -1,0 +1,84 @@
+<div class="page-header">
+    <h1>Staffs</h1>
+</div>
+<br>
+    
+<div class = "jumbotron text-center" ng-show="staff.loading">
+        <span class = "glyphicon glyphicon-repeat spinner"></span>
+        <p>Loading...</p>
+    </div>
+    <div class="alert alert-info">
+        Staffs Information
+            <a href="/addStaff"><button type="button" class="btn btn-sm btn-primary pull-right">Add</button></a>
+    </div>
+    <br>
+    <button type="button" ng-click="staff.showMore(number);" class="btn btn-success">Apply Filter</button>
+    <button type="button" ng-click="staff.showAll();" class="btn btn-warning">Show All</button>
+    <div class="showmore">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon">Results to display:</span>
+                <input type="text" class="form-control" ng-model="number">
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar-form">
+        <div class="form-group">
+            <input type="text" class="form-control" name="search" placeholder="search for..." ng-model="searchKeyword">
+        </div>
+        <button type="button" ng-click="staff.search(searchKeyword, number);" class="btn btn-default">Search</button>
+        <button type="button" ng-click="staff.clear();" class="btn btn-default">Clear</button>
+        <a href="/search">
+            <button type="button" class="btn btn-default">Advanced Search</button>
+        </a>
+    </div>
+    <br>
+    <div ng-show="searchFilter !== undefined">
+        <p><strong>Total results: </strong>{{ (staff.staffs | filter: searchFilter).length }}</p>
+    </div>
+    <div ng-show="searchFilter !== undefined">
+        <p><strong>Showing: </strong>{{(staff.staffs | filter: searchFilter | limitTo: staff.limit).length}}</p>
+    </div>
+    <br>
+
+    <div class = "row show-hide-message" ng-show ="staff.showMoreError">
+        <div class = "alert alert-danger">{{ staff.showMoreError }}</div>
+    </div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Staffs</strong>
+    </div>
+    
+    <table class="table">
+        
+        <tr>
+            <th>Staff Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Specialize</th>
+            <th>Phone No</th>
+            <th>Address</th>
+        </tr>
+        <tr ng-repeat="proje in staff.staffs | filter: searchFilter | limitTo: staff.limit">
+            <td>{{ proje.name }}</td>
+            <td>{{ proje.username }}</td>
+            <td>{{ proje.email }}</td>
+            <td>{{ proje.specialize }}</td>
+            <td>{{ proje.phoneNo }}</td>
+            <td>{{ proje.address }}</td>
+            <td>
+            <a href="/edit/{{ proje._id }}"><button type="button" class="btn btn-primary">Edit</button></a>
+            <button type="button"  class="btn btn-danger" ng-click="staff.deleteStaff(proje.name)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+    <div class = "row show-hide-message" ng-show ="staff.successMsg">
+        <div class = "alert alert-success">{{ staff.successMsg }}</div>
+    </div>
+    <br>
+    

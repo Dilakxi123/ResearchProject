@@ -1,0 +1,59 @@
+<div class="page-header">
+        <h1>Edit Room</h1>
+    <br>
+    <ul class="nav nav-tabs">
+    <li role="presentation" ng-click="roomEdit.hotelNamePhase();" ng-class="hotelNameTab"><a href="#">Hotel Name</a></li>
+    <li role="presentation" ng-click="roomEdit.roomNoPhase();" ng-class="roomNoTab"><a href="#">Room No</a></li>
+    <li role="presentation" ng-click="roomEdit.roomTypePhase();" ng-class="roomTypeTab"><a href="#">Room Type</a></li>
+    <li role="presentation" ng-click="roomEdit.roomPricePhase();" ng-class="roomPriceTab"><a href="#">Room Price</a></li>
+    
+    </ul>
+    <br>
+    
+    
+    <form name="roomEdit.hotelNameForm" ng-show="roomEdit.phase1" ng-submit="roomEdit.updateHotelName(newHotelName, roomEdit.hotelNameForm.hotelName.$valid)" novalidate>
+            <label>Hotel Name:</label>
+            <select class="form-control" name="hotelName" ng-model="model" >
+                <option ng-repeat="option in data" value="{{option.id}}">{{ option.label }}</option>
+        </select>
+            <br>
+    
+    <button ng-disabled="roomEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+    </form>
+    <form name="roomEdit.roomNoForm" ng-show="roomEdit.phase2" ng-submit="roomEdit.updateRoomNo(newRoomNo, roomEdit.roomNoForm.roomNo.$valid)" novalidate>
+        <label>Room No:</label>
+        <input ng-disabled="roomEdit.disabled" class="form-control" type="text" name="roomNo" placeholder="please enter Room No" ng-model="newRoomNo" required>
+        <br>
+    <button ng-disabled="roomEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+    </form>
+    <form name="roomEdit.roomTypeForm" ng-show="roomEdit.phase3" ng-submit="roomEdit.updateRoomType(newRoomType, roomEdit.roomTypeForm.roomType.$valid)" novalidate>
+        <label>Room Type:</label>
+        <select ng-disabled="roomEdit.disabled" class="form-control" type="text" name="roomType" ng-model="newRoomType" required>  
+            <option value="" disabled>Select One</option>
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Triple">Triple</option>
+            <option value="Quad">Quad</option>
+            <option value="Queen">Queen</option>
+            <option value="King">King</option>
+        </select>
+        <br>
+    <button ng-disabled="roomEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+    </form>
+    <form name="roomEdit.roomPriceForm" ng-show="roomEdit.phase4" ng-submit="roomEdit.updateRoomPrice(newRoomPrice, roomEdit.roomPriceForm.roomPrice.$valid)" novalidate>
+        <label>Room Price:</label>
+        <input ng-disabled="roomEdit.disabled" class="form-control" type="text" name="roomPrice" placeholder="please enter Room Price" ng-model="newRoomPrice" required>
+        <br>
+    <button ng-disabled="roomEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+    </form>
+
+    <br>
+    
+    <div class="row show-hide-message" ng-show="roomEdit.successMsg">
+        <div class="alert alert-success">{{ roomEdit.successMsg }}</div>
+    </div>
+    
+    
+    <div class="row show-hide-message" ng-show="roomEdit.errorMsg">
+        <div class="alert alert-danger">{{ roomEdit.errorMsg }}</div>
+    </div>

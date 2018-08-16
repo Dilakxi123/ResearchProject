@@ -1,0 +1,22 @@
+[
+   {
+      "key":"headache",
+      "type":"Heart Failure"
+   },
+   {
+      "key":"stomach",
+      "type":"gastritis"
+   },
+   {
+      "key":"sore throat",
+      "type":"cold"
+   },
+   {
+      "key":"migraine",
+      "type":"headache"
+   },
+   {
+      "key":"liver",
+      "type":"liver Failure"
+   }
+]
