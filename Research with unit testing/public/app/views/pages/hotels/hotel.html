@@ -1,0 +1,83 @@
+<div class="page-header">
+    <h1>Hotels</h1>
+</div>
+<br>
+    
+<div class = "jumbotron text-center" ng-show="hotel.loading">
+        <span class = "glyphicon glyphicon-repeat spinner"></span>
+        <p>Loading...</p>
+    </div>
+    <div class="alert alert-info">
+        Hotels Information
+            <a href="/addHotel"><button type="button" class="btn btn-sm btn-primary pull-right">Add</button></a>
+    </div>
+    <br>
+    <button type="button" ng-click="hotel.showMore(number);" class="btn btn-success">Apply Filter</button>
+    <button type="button" ng-click="hotel.showAll();" class="btn btn-warning">Show All</button>
+    <div class="showmore">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon">Results to display:</span>
+                <input type="text" class="form-control" ng-model="number">
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar-form">
+        <div class="form-group">
+            <input type="text" class="form-control" name="search" placeholder="search for..." ng-model="searchKeyword">
+        </div>
+        <button type="button" ng-click="hotel.search(searchKeyword, number);" class="btn btn-default">Search</button>
+        <button type="button" ng-click="hotel.clear();" class="btn btn-default">Clear</button>
+        <a href="/hotelSearch">
+            <button type="button" class="btn btn-default">Advanced Search</button>
+        </a>
+    </div>
+    <br>
+    <div ng-show="searchFilter !== undefined">
+        <p><strong>Total results: </strong>{{ (hotel.hotels | filter: searchFilter).length }}</p>
+    </div>
+    <div ng-show="searchFilter !== undefined">
+        <p><strong>Showing: </strong>{{(hotel.hotels | filter: searchFilter | limitTo: hotel.limit).length}}</p>
+    </div>
+    <br>
+
+    <div class = "row show-hide-message" ng-show ="hotel.showMoreError">
+        <div class = "alert alert-danger">{{ hotel.showMoreError }}</div>
+    </div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Hotels</strong>
+    </div>
+    
+    <table class="table">
+        <tr>
+            <th>Hotel Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Rate</th>
+            <th>Room Count</th>
+        </tr>
+        <tr ng-repeat="ro in hotel.hotels | filter: searchFilter | limitTo: hotel.limit">
+            <td>{{ ro.name }}</td>
+            <td>{{ ro.address }}</td>
+            <td>{{ ro.phone }}</td>
+            <td>{{ ro.email }}</td>
+            <td>{{ ro.rate }}</td>
+            <td>{{ ro.roomCount }}</td>
+            <td>
+            <a href="/hotelEdit/{{ ro._id }}"><button type="button" class="btn btn-primary">Edit</button></a>
+            <button type="button"  class="btn btn-danger" ng-click="hotel.deleteHotel(ro.name)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+    <div class = "row show-hide-message" ng-show ="hotel.successMsg">
+        <div class = "alert alert-success">{{ hotel.successMsg }}</div>
+    </div>
+    <br>
+    

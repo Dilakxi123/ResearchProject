@@ -1,0 +1,62 @@
+<div class="page-header">
+    <h1>Edit Hotel</h1>
+<br>
+<ul class="nav nav-tabs">
+<li role="presentation" ng-click="hotelEdit.namePhase();" ng-class="nameTab"><a href="#">Hotel Name</a></li>
+<li role="presentation" ng-click="hotelEdit.addressPhase();" ng-class="addressTab"><a href="#">Address</a></li>
+<li role="presentation" ng-click="hotelEdit.phonePhase();" ng-class="phoneTab"><a href="#">Phone</a></li>
+<li role="presentation" ng-click="hotelEdit.emailPhase();" ng-class="emailTab"><a href="#">Email</a></li>
+<li role="presentation" ng-click="hotelEdit.ratePhase();" ng-class="rateTab"><a href="#">Rate</a></li>
+<li role="presentation" ng-click="hotelEdit.roomCountPhase();" ng-class="roomCountTab"><a href="#">Room Count</a></li>
+
+</ul>
+<br>
+
+
+<form name="hotelEdit.nameForm" ng-show="hotelEdit.phase1" ng-submit="hotelEdit.updateName(newName, hotelEdit.nameForm.name.$valid)" novalidate>
+        <label>Hotel Name:</label>
+        <input ng-disabled="hotelEdit.disabled" class="form-control" type="text" name="name" placeholder="please enter Hotel name" ng-model="newName" required>
+        <br>
+
+<button ng-disabled="hotelEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+</form>
+<form name="hotelEdit.addressForm" ng-show="hotelEdit.phase2" ng-submit="hotelEdit.updateAddress(newAddress, hotelEdit.addressForm.address.$valid)" novalidate>
+    <label>Address:</label>
+    <input ng-disabled="hotelEdit.disabled" class="form-control" type="text" name="address" placeholder="please enter Address" ng-model="newAddress" required>
+    <br>
+<button ng-disabled="hotelEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+</form>
+<form name="hotelEdit.phoneForm" ng-show="hotelEdit.phase3" ng-submit="hotelEdit.updatePhone(newPhone, hotelEdit.roomPhone.phone.$valid)" novalidate>
+    <label>Phone:</label>
+    <input ng-disabled="hotelEdit.disabled" class="form-control" type="text" name="phone" placeholder="please enter Phone" ng-model="newPhone" required>
+    <br>
+<button ng-disabled="hotelEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+</form>
+<form name="hotelEdit.emailForm" ng-show="hotelEdit.phase4" ng-submit="hotelEdit.updateEmail(newEmail, hotelEdit.emailForm.email.$valid)" novalidate>
+    <label>Email:</label>
+    <input ng-disabled="hotelEdit.disabled" class="form-control" type="text" name="email" placeholder="please enter Email" ng-model="newEmail" required>
+    <br>
+<button ng-disabled="hotelEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+</form>
+<form name="hotelEdit.rateForm" ng-show="hotelEdit.phase5" ng-submit="hotelEdit.updateRate(newRate, hotelEdit.rateForm.rate.$valid)" novalidate>
+    <label>Rate:</label>
+    <input ng-disabled="hotelEdit.disabled" class="form-control" type="text" name="rate" placeholder="please enter Rate" ng-model="newRate" required>
+    <br>
+<button ng-disabled="hotelEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+</form>
+<form name="hotelEdit.roomCountForm" ng-show="hotelEdit.phase6" ng-submit="hotelEdit.updateRoomCount(newRoomCount, hotelEdit.roomCountForm.roomCount.$valid)" novalidate>
+    <label>Room Count:</label>
+    <input ng-disabled="hotelEdit.disabled" class="form-control" type="text" name="roomCount" placeholder="please enter Room Count" ng-model="newRoomCount" required>
+    <br>
+<button ng-disabled="hotelEdit.disabled" class="btn btn-primary" type="submit">Update</button>
+</form>
+<br>
+
+<div class="row show-hide-message" ng-show="hotelEdit.successMsg">
+    <div class="alert alert-success">{{ hotelEdit.successMsg }}</div>
+</div>
+
+
+<div class="row show-hide-message" ng-show="hotelEdit.errorMsg">
+    <div class="alert alert-danger">{{ hotelEdit.errorMsg }}</div>
+</div>

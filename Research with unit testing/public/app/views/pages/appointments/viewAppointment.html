@@ -1,0 +1,80 @@
+<div class="page-header">
+    <h1>Appointment Management</h1>
+</div>
+<br>
+    
+<div class = "jumbotron text-center" ng-show="appointment.loading">
+        <span class = "glyphicon glyphicon-repeat spinner"></span>
+        <p>Loading...</p>
+    </div>
+    <br>
+    <button type="button" ng-click="appointment.showMore(number);" class="btn btn-success">Apply Filter</button>
+    <button type="button" ng-click="appointment.showAll();" class="btn btn-warning">Show All</button>
+    <div class="showmore">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon">Results to display:</span>
+                <input type="text" class="form-control" ng-model="number">
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar-form">
+        <div class="form-group">
+            <input type="text" class="form-control" name="search" placeholder="search for..." ng-model="searchKeyword">
+        </div>
+        <button type="button" ng-click="appointment.search(searchKeyword, number);" class="btn btn-default">Search</button>
+        <button type="button" ng-click="appointment.clear();" class="btn btn-default">Clear</button>
+        <a href="/appointmentSearch">
+            <button type="button" class="btn btn-default">Advanced Search</button>
+        </a>
+    </div>
+    <br>
+    <div ng-show="searchFilter !== undefined">
+        <p><strong>Total results: </strong>{{ (appointment.appointments | filter: searchFilter).length }}</p>
+    </div>
+    <div ng-show="searchFilter !== undefined">
+        <p><strong>Showing: </strong>{{(appointment.appointments | filter: searchFilter | limitTo: appointment.limit).length}}</p>
+    </div>
+    <br>
+
+    <div class = "row show-hide-message" ng-show ="appointment.showMoreError">
+        <div class = "alert alert-danger">{{ appointment.showMoreError }}</div>
+    </div>
+    
+    
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <strong>Appointment Information</strong>
+    </div>
+    
+    <table class="table">
+        
+        <tr>
+            <th>Patient Name</th>
+            <th>Disease</th>
+            <th>Doctor Name</th>
+            <th>Date</th>
+        </tr>
+        <tr ng-repeat="person in appointment.appointments">
+            <td>{{ person.patientName }}</td>
+            <td>{{ person.disease }}</td>
+            <td>{{ person.doctorName }}</td>
+            <td>{{ person.date }}</td>
+            <td>
+
+            <a href="/editAppointmentPatient/{{person._id}}">
+            <button type="button" ng-click="appointment.appointmentEdit(person.patientName);"  class="btn btn-primary" >Edit</button>    
+            </a>
+            <button type="button" ng-click="appointment.deleteAppointment(person.patientName);"  class="btn btn-danger" >Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+    <div class = "row show-hide-message" ng-show ="appointment.successMsg">
+        <div class = "alert alert-success">{{ appointment.successMsg }}</div>
+    </div>
+    <br>
+    
